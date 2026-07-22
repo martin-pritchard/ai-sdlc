@@ -19,11 +19,11 @@ it deleted.**
 
 ## Labels
 
-Run `scripts/setup-labels.sh` once per repo.
+Run `/setup` once per repo (or `scripts/setup-labels.sh` for labels alone).
 
 | Label | Meaning | Set by |
 |---|---|---|
-| `backlog` | Captured, untriaged | issue template / you |
+| `backlog` | Captured, untriaged | issue template (`/setup` creates it) |
 | `lane:just-ship` · `lane:think-a-little` · `lane:think-hard` | Triage verdict | `/triage` |
 | `needs-shaping` | Not implementable yet | `/triage` (on the two thinking lanes) |
 

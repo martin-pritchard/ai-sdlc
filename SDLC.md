@@ -54,6 +54,11 @@ Three commands, two human moments. Everything between them is agent-owned.
   session can build and verify — split by verifiability and blast radius,
   never by layer. A UI-only build against sample scenarios is one unit;
   "wire it to persistence" is another, in a different lane.
+- **Logic seams are test-first on every lane.** An isolated agent writes
+  the tests from the contract and acceptance criteria without ever seeing
+  the implementation; the implementer makes them pass and never edits them.
+  UI is verified by capture against the design instead. Lanes decide
+  ceremony; checks run everywhere.
 - **`/build` runs unattended** — fresh session, hooks block "done" on red,
   UI captured against the design, then a fresh-context scoped review, then
   the PR is marked ready. If mid-build the work breaks its lane's assumptions
