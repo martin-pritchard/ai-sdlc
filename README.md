@@ -33,8 +33,8 @@ without installing: `claude --plugin-dir .`
 | `/audit` | skill | by you, occasionally |
 | `scoped-reviewer` | agent | spawned by `/build` (pinned to Opus) |
 | `blind-test-writer` | agent | spawned on logic seams, every lane |
-| formatter | hook | on every write → delegates to `.claude/format.sh` |
-| verify | hook | at Stop → blocks "done" while `.claude/verify.sh` fails |
+| formatter | hook | on every write → delegates to `.claude/format.sh` with the file path |
+| verify | hook | at Stop, on turns that wrote files → blocks "done" while `.claude/verify.sh` fails |
 
 `build-rules` is the only skill Claude invokes on its own. The rest carry
 `disable-model-invocation: true`, so they cost nothing until you type them.
@@ -44,7 +44,8 @@ without installing: `claude --plugin-dir .`
 Four parties, no self-grading:
 
 - **Tests** — `blind-test-writer` writes them from the contract and
-  acceptance criteria, forbidden from reading the implementation.
+  acceptance criteria. It has no read tools, so the blindness is structural,
+  not a request.
 - **Code** — the `/build` session makes those tests pass and never edits them.
 - **Review** — `scoped-reviewer`, a fresh context that didn't write the code,
   scoped to correctness only.
@@ -63,6 +64,9 @@ work has exactly two: triage and the PR.
   and re-measure before adding anything else.
 - `/setup` is idempotent; re-run it after a stack change to refresh
   `.claude/verify.sh` and `.claude/format.sh`.
+- The Stop hook skips turns that wrote nothing, and a block forces one fix
+  cycle per stop rather than looping forever — a stubborn red ends as an
+  explicit blocked hand-back, not a silent pass and not an infinite retry.
 - Edits to a `SKILL.md` take effect immediately. Changes to `hooks/` or
   `agents/` need `/reload-plugins` or a restart.
 - CI runs `claude plugin validate` on every push; run it locally after

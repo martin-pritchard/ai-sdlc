@@ -70,15 +70,9 @@ Three commands, two human moments. Everything between them is agent-owned.
 
 ## Definition of done
 
-Mechanically checkable. All must hold.
-
-- [ ] Build and static checks pass
-- [ ] Every state in the design reachable in a preview or harness without real data
-- [ ] No view acquires its own data
-- [ ] No dependency added that wasn't agreed
-- [ ] Domain terms match the shared vocabulary
-- [ ] Nothing added "for flexibility later"
-- [ ] Deferred decisions recorded in `DECISIONS.md`, not decided silently
+Mechanically checkable, all must hold. The canonical checklist lives in the
+`build-rules` skill — one list, in the thing that enforces it, so it cannot
+drift from itself.
 
 ## Models
 
@@ -86,11 +80,16 @@ Expensive models where a wrong *decision* is costly; cheap models where the
 output is *mechanically checkable* — the verification loop catches a cheap
 model's mistakes; nothing catches a bad plan except you, later.
 
+Only two of these are pinned by the plugin (triage in its skill, review in
+its agent). Shapes and builds run on whatever the session runs — the middle
+column is the recommendation, chosen per session by you.
+
 | Job | Model |
 |---|---|
-| Triage, label plumbing | Haiku |
+| Triage, label plumbing | Haiku *(pinned)* |
 | Just Ship / Think A Little builds | Sonnet |
-| Interviews, specs, plans, Think Hard builds, review | Opus |
+| Interviews, specs, plans, Think Hard builds | Opus |
+| Scoped review | Opus *(pinned)* |
 
 ## Speed rules
 
