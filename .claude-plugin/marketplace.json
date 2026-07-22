@@ -1,0 +1,12 @@
+{
+  "name": "ai-sdlc",
+  "description": "Risk-triaged SDLC plugin for agentic development.",
+  "owner": { "name": "Martin Pritchard" },
+  "plugins": [
+    {
+      "name": "sdlc",
+      "source": "./",
+      "description": "Risk-triaged SDLC: ideas in, verified work out, ceremony scaled to blast radius."
+    }
+  ]
+}
