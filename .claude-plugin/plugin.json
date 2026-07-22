@@ -1,6 +1,6 @@
 {
   "name": "sdlc",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Risk-triaged SDLC: ideas in, verified work out, ceremony scaled to blast radius.",
   "author": { "name": "Martin Pritchard" },
   "keywords": ["sdlc", "triage", "workflow", "github"]
