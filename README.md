@@ -83,7 +83,7 @@ three PR reviews. Everything between those moments is agent-owned.
 
 The process is one page: [`SDLC.md`](SDLC.md). The GitHub wiring
 (labels-first, board optional) is [`GITHUB.md`](GITHUB.md). Architecture
-rules — where code goes — are [`PRINCIPLES.md`](PRINCIPLES.md), which
+rules — where code goes — are [`PRINCIPLES.md`](templates/PRINCIPLES.md), which
 `/setup` copies into each repo for the project to own and adapt. To try locally
 without installing: `claude --plugin-dir .`
 

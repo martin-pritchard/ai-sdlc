@@ -90,7 +90,7 @@ hook exists to catch the opaque keys it misses.
 
 ## Step 7 - architecture principles
 
-Copy `${CLAUDE_PLUGIN_ROOT}/PRINCIPLES.md` to the repo root if the repo has
+Copy `${CLAUDE_PLUGIN_ROOT}/templates/PRINCIPLES.md` to the repo root if the repo has
 no `PRINCIPLES.md`. The repo's copy is the live one — the user adapts it and
 adds stack appendices (`PRINCIPLES.ios.md`, `PRINCIPLES.web.md`) as the
 project grows. Add a line to the repo's `CLAUDE.md` (create a minimal one if
