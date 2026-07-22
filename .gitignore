@@ -1,1 +1,5 @@
 .DS_Store
+
+# The user-level gitignore excludes build/ directories, which would swallow
+# the /build skill. Re-include it explicitly.
+!skills/build/
