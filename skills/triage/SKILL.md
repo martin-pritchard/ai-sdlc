@@ -46,7 +46,7 @@ Only after the user confirms or corrects the table. For each issue:
 
 - Remove `backlog`; add the lane label (`lane:just-ship`,
   `lane:think-a-little`, `lane:think-hard`)
-- `Think A Little` and `Think Hard` also get `needs-shaping`
+- `Think A Little` and `Think Hard` also get `needs-spec`
 - New or changed layout also gets `needs-design` — **on any lane**. Lane
   measures blast radius; needing a Claude Design turn is orthogonal to it.
   The label comes off when the bundle link lands in the issue

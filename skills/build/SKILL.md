@@ -25,9 +25,9 @@ gh issue view $1 --json title,body,labels
 ```
 
 Read nothing else from GitHub. Everything needed is in the issue body. If it
-is not there, stop and say so rather than going looking — that is a shaping
-failure worth surfacing. An issue still carrying `needs-shaping` goes back to
-`/shape`, not into code. An issue that changes layout must carry a design
+is not there, stop and say so rather than going looking — that is a spec
+gap worth surfacing. An issue still carrying `needs-spec` goes back to
+`/spec`, not into code. An issue that changes layout must carry a design
 bundle link (or DesignSync project reference) and no `needs-design` label —
 otherwise stop and say so; layout is never improvised from the issue's prose.
 
@@ -63,7 +63,7 @@ breaks its lane's assumptions (needs a new dependency, crosses a seam that
 wasn't agreed, changes a contract or schema, or hits genuine spec ambiguity),
 **stop**. Say which assumption broke, comment it on the issue, and hand back.
 Never finish a ticket on a premise that no longer holds; work already done
-becomes input to re-shaping, not waste.
+becomes input to the next spec, not waste.
 
 ## Step 4 - verify
 

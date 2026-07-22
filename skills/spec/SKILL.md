@@ -1,14 +1,14 @@
 ---
-name: shape
-description: Turn a triaged issue into something implementable, with effort scaled to its lane. Run when the user asks to shape, flesh out or spec a numbered issue.
+name: spec
+description: Turn a triaged issue into an implementable spec, with effort scaled to its lane. Run when the user asks to spec, shape or flesh out a numbered issue.
 disable-model-invocation: true
 argument-hint: [issue-number]
 allowed-tools: Read, Grep, Glob, Bash, AskUserQuestion, Agent
 ---
 
-# Shape an issue
+# Spec an issue
 
-Shape issue #$1. Read it first:
+Spec issue #$1. Read it first:
 
 ```
 gh issue view $1 --json title,body,labels
@@ -19,7 +19,7 @@ The lane label decides everything below. No lane label → stop; it needs
 
 ## `lane:just-ship`
 
-Nothing to shape. Say so and stop — the one-liner plus acceptance criteria is
+Nothing to spec. Say so and stop — the one-liner plus acceptance criteria is
 the spec. If the issue genuinely can't be implemented from its body, that's a
 triage miss: say what's missing and suggest the lane it should have had.
 
@@ -34,7 +34,7 @@ Write the spec yourself; the user skims it asynchronously.
    criteria: what changes, which files/components are involved, the data
    shapes at the seam, edge cases as observable outcomes, and what is
    explicitly out of scope.
-3. Remove `needs-shaping`. Tell the user it's ready for a skim and `/build`.
+3. Remove `needs-spec`. Tell the user it's ready for a skim and `/build`.
 
 ## `lane:think-hard`
 
@@ -60,14 +60,14 @@ not a substitute for one.
    spec — `/build` reads only the body, so a plan left in a comment is a
    plan the build never sees.
 5. **Stop for approval.** This is the one human gate before the PR. On
-   approval, remove `needs-shaping`.
+   approval, remove `needs-spec`.
 
 ## User-facing work, any lane
 
 The Claude Design handoff bundle **is** the spec — link it in the issue and
 do not restate its layout in prose. Prose describes states and behaviour;
-only the design describes layout. If there is no bundle yet, shaping's output
-is a note of what to design: the screens, and the empty/loading/error/
+only the design describes layout. If there is no bundle yet, this step's
+output is a note of what to design: the screens, and the empty/loading/error/
 populated states each needs. When the bundle link lands in the issue, remove
 `needs-design`. On the thinking lanes, do the behaviour spec here *before*
 the design turn, so the design is drawn against agreed behaviour.
