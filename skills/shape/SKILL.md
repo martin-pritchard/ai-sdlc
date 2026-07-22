@@ -54,7 +54,8 @@ not a substitute for one.
    one. Split by verifiability and blast radius, never by layer. Each extra
    unit becomes its own issue with its own lane (a follow-up "wire it up"
    unit is usually `lane:think-a-little`, not Think Hard).
-4. **Plan.** Files to touch and why, test seams with their Given/When/Then,
+4. **Plan.** Files to touch and why — placement justified by the project's
+   `PRINCIPLES.md`, not invented — test seams with their Given/When/Then,
    risks, decision points. Post the plan as an issue comment.
 5. **Stop for approval.** This is the one human gate before the PR. On
    approval, remove `needs-shaping`.

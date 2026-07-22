@@ -61,7 +61,15 @@ labels: backlog
 ---
 ```
 
-## Step 6 - prove the loop
+## Step 6 - architecture principles
+
+Copy `${CLAUDE_PLUGIN_ROOT}/PRINCIPLES.md` to the repo root if the repo has
+no `PRINCIPLES.md`. The repo's copy is the live one — the user adapts it and
+adds stack appendices (`PRINCIPLES.ios.md`, `PRINCIPLES.web.md`) as the
+project grows. Add `See @PRINCIPLES.md` to the repo's `CLAUDE.md` (create a
+minimal one if absent) so placement rules are always in context.
+
+## Step 7 - prove the loop
 
 Run `.claude/verify.sh` and show the output. If it passes because there is
 nothing to check yet (no tests, no build), say so **loudly** — a vacuously

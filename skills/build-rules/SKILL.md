@@ -42,6 +42,14 @@ is what keeps the deferred decisions genuinely deferrable - once a component
 fetches its own data, extracting that later is real work rather than a
 contained change.
 
+## Placement
+
+Where a new file or type goes is decided by the project's `PRINCIPLES.md`
+(and its stack appendix) when one exists — feature folders, colocation,
+UI-free core, composition root. Never invent a location. If the principles
+are silent on the case at hand, that is a deferred decision for
+`DECISIONS.md`, not a guess.
+
 ## Conventions
 
 Follow this codebase's existing conventions for file layout, naming, component

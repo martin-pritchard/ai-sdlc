@@ -16,7 +16,9 @@ Then: capture an idea as a one-line issue → `/triage` → (`/shape n` on the
 thinking lanes) → `/build n` → review the PR. That's the whole loop.
 
 The process is one page: [`SDLC.md`](SDLC.md). The GitHub wiring
-(labels-first, board optional) is [`GITHUB.md`](GITHUB.md). To try locally
+(labels-first, board optional) is [`GITHUB.md`](GITHUB.md). Architecture
+rules — where code goes — are [`PRINCIPLES.md`](PRINCIPLES.md), which
+`/setup` copies into each repo for the project to own and adapt. To try locally
 without installing: `claude --plugin-dir .`
 
 ## Components
