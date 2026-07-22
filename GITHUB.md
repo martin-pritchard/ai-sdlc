@@ -69,11 +69,32 @@ Your manual moments: the triage table, the Think Hard spec approval, the PR.
 
 ## The optional board
 
-If you want the visual: create a GitHub Project, enable auto-add
-(`is:issue is:open`) and the built-in PR-state workflows, and add a Status
-single-select mirroring the derived states above. You never move a card;
-agents never touch it. If you check it less than weekly, delete it — the
-labels keep working.
+A read-only dashboard. Labels stay the source of truth; you never move a
+card; agents never touch it. If you check it less than weekly, delete it —
+the labels keep working. Setup is manual (GitHub doesn't expose Project
+workflow toggles to the API), but it's five minutes, once:
+
+1. **Create it.** Repo → Projects tab → New project → Board.
+2. **Auto-add.** In the project: ⋯ (top right) → Workflows →
+   Auto-add to project → choose this repo, filter `is:open`, turn on.
+3. **Statuses.** Edit the Status field's options down to `Backlog` and
+   `Done` — the only two the built-in workflows can actually maintain
+   (they fire on add/close/merge, not on label changes).
+4. **Workflows.** On the same Workflows page: *Item added to project* →
+   `Backlog`; *Item closed* → `Done`; *Pull request merged* → `Done`;
+   *Auto-archive items* → on, filter `is:closed`.
+5. **Views for the middle states.** These derive from labels live, so
+   they never need maintenance. Add a saved view per state:
+   - **Needs spec** — filter `is:open label:needs-spec`
+   - **Needs design** — filter `is:open label:needs-design`
+   - **Ready to build** — filter `is:open -label:backlog -label:needs-spec
+     -label:needs-design no:pr`
+   - **In flight** — filter `is:open is:pr` (draft = building, ready =
+     awaiting your review)
+
+Don't add In-development/In-review Status columns: no built-in workflow
+can move cards into them, so they'd rot into a lie within a week —
+exactly what the derived-states table exists to prevent.
 
 ## If it starts feeling slow
 
