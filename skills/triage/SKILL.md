@@ -17,7 +17,7 @@ verdict, which is why it runs on a cheap model.
 List untriaged issues:
 
 ```
-gh issue list --label backlog --json number,title,body
+gh issue list --label backlog --limit 200 --json number,title,body
 ```
 
 For each issue, ask in order and stop at the first yes:
@@ -54,8 +54,8 @@ Only after the user confirms or corrects the table. For each issue:
   outcomes only
 - Close any issue the user agreed to close
 
-If a label is missing, run `scripts/setup-labels.sh` from the plugin root (or
-`gh label create` the one that's missing) rather than failing.
+If a label is missing, `gh label create` it rather than failing — colours and
+descriptions are in the plugin's `scripts/setup-labels.sh`.
 
 ## Constraints
 

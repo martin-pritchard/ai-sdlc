@@ -3,7 +3,7 @@ name: shape
 description: Turn a triaged issue into something implementable, with effort scaled to its lane. Run when the user asks to shape, flesh out or spec a numbered issue.
 disable-model-invocation: true
 argument-hint: [issue-number]
-allowed-tools: Read, Grep, Glob, Bash, AskUserQuestion
+allowed-tools: Read, Grep, Glob, Bash, AskUserQuestion, Agent
 ---
 
 # Shape an issue
@@ -56,7 +56,9 @@ not a substitute for one.
    unit is usually `lane:think-a-little`, not Think Hard).
 4. **Plan.** Files to touch and why — placement justified by the project's
    `PRINCIPLES.md`, not invented — test seams with their Given/When/Then,
-   risks, decision points. Post the plan as an issue comment.
+   risks, decision points. Append the plan to the issue body, below the
+   spec — `/build` reads only the body, so a plan left in a comment is a
+   plan the build never sees.
 5. **Stop for approval.** This is the one human gate before the PR. On
    approval, remove `needs-shaping`.
 
