@@ -31,6 +31,10 @@ wrong → Just Ship. Worst outcome is data is wrong → Think Hard.
 **Importance is not size.** A one-line change to a pricing calculation is
 Think Hard. A 2,000-line UI build against existing components is Just Ship.
 
+**Too big to be one buildable unit is a yes to question 1** — the
+decomposition itself is the expensive-to-undo decision. Lane it Think Hard
+and let `/spec` fan it out into child issues, each with its own lane.
+
 ---
 
 ## The path

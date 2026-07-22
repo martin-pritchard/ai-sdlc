@@ -35,6 +35,10 @@ wrong → Just Ship. Worst outcome is data is wrong → Think Hard.
 Importance is not size. A one-line change to a pricing calculation is Think
 Hard. A large UI build against existing components is Just Ship.
 
+Too big to be one buildable unit (an epic, a whole app) is a yes to
+question 1 — the decomposition is itself expensive to undo. Lane it Think
+Hard; `/spec` decomposes it into child issues.
+
 Output a single table: number, title, proposed lane, one-line reason. Include
 any issue proposed for closing. Set nothing yet. Do not elaborate.
 
@@ -51,7 +55,8 @@ Only after the user confirms or corrects the table. For each issue:
   measures blast radius; needing a Claude Design turn is orthogonal to it.
   The label comes off when the bundle link lands in the issue
 - Append acceptance criteria to the body: three bullets maximum, observable
-  outcomes only
+  outcomes only. Skip this for an epic — its criteria land on the child
+  issues at `/spec`
 - Close any issue the user agreed to close
 
 If a label is missing, `gh label create` it rather than failing — colours and

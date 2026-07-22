@@ -35,6 +35,11 @@ Each becomes a title-only issue labelled `backlog`. (Away from a terminal,
 the repo's "Idea" issue template — created by `/setup` — does the same
 thing from the GitHub UI.)
 
+An idea can also be epic-shaped: `/idea Build the invoicing MVP from the
+design bundle` is legal. It triages `think-hard` — the decomposition is the
+expensive decision — and `/spec`'s decompose step fans it out into child
+issues, each with its own lane. You never split work up before capture.
+
 **`/triage`** — one session, the whole backlog at once. Claude proposes a
 table; nothing happens until you confirm it:
 
