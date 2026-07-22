@@ -29,20 +29,18 @@ This is what the plugin's Stop hook runs; it is the guarantee that lets
 ## Step 3 - the formatter
 
 Write an executable `.claude/format.sh` for the detected stack. The plugin's
-PostToolUse hook delegates to it after every write. Formatting rules never
+PostToolUse hook delegates to it after every write, passing the changed
+file's path as `$1` — format just that file when the stack's tooling allows
+it, falling back to repo-wide only if it doesn't. Formatting rules never
 belong in CLAUDE.md; this script is the enforcement mechanism.
 
 ## Step 4 - labels
 
-Create the SDLC labels (idempotent):
+Create the SDLC labels (idempotent) — the script is the single source of
+truth for names, colours and descriptions:
 
 ```
-gh label create "backlog"             --color "ededed" --description "Captured, untriaged" --force
-gh label create "needs-shaping"       --color "d4c5f9" --description "Not implementable yet - run /shape" --force
-gh label create "needs-design"        --color "bfdadc" --description "New/changed layout awaiting a Claude Design turn" --force
-gh label create "lane:just-ship"      --color "0e8a16" --description "No ceremony: build straight from the issue" --force
-gh label create "lane:think-a-little" --color "fbca04" --description "Crosses a seam: spec first, human skims" --force
-gh label create "lane:think-hard"     --color "d93f0b" --description "Expensive to undo: interview, spec, plan, approval" --force
+bash ${CLAUDE_PLUGIN_ROOT}/scripts/setup-labels.sh
 ```
 
 If `gh` isn't authenticated or there's no remote yet, skip with a note —
@@ -66,8 +64,11 @@ labels: backlog
 Copy `${CLAUDE_PLUGIN_ROOT}/PRINCIPLES.md` to the repo root if the repo has
 no `PRINCIPLES.md`. The repo's copy is the live one — the user adapts it and
 adds stack appendices (`PRINCIPLES.ios.md`, `PRINCIPLES.web.md`) as the
-project grows. Add `See @PRINCIPLES.md` to the repo's `CLAUDE.md` (create a
-minimal one if absent) so placement rules are always in context.
+project grows. Add a line to the repo's `CLAUDE.md` (create a minimal one if
+absent): `Placement rules live in PRINCIPLES.md — read it before creating or
+moving files.` A plain mention, not an `@` import: build sessions read it
+when placing files; question-answering sessions shouldn't pay ~2k tokens of
+architecture rules on every turn.
 
 ## Step 7 - prove the loop
 

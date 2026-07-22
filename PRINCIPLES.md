@@ -139,8 +139,10 @@ When unsure, prefer the more local location and promote later (see #2).
 
 - `/setup` copies it into each repo; the repo's copy is the live one — adapt
   it, and add stack appendices as the project grows.
-- Reference it from the repo's `CLAUDE.md` (e.g. `See @PRINCIPLES.md`) so
-  it's always in context for agents.
+- Reference it from the repo's `CLAUDE.md` with a plain mention ("Placement
+  rules live in PRINCIPLES.md — read it before creating or moving files"),
+  not an `@` import — build sessions load it on demand; other sessions
+  shouldn't carry it on every turn.
 - Keep `CLAUDE.md` for the project-specific parts: the actual folder tree,
   build/test commands, and any exceptions to these principles.
 - Keep stack-specific *mechanisms* (module system, UI-state API, boundary
