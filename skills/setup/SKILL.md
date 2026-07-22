@@ -26,13 +26,20 @@ tests (fast — the full suite belongs in CI), exiting non-zero on any failure.
 This is what the plugin's Stop hook runs; it is the guarantee that lets
 `/build` run unattended.
 
+Keep it a **thin shim**: call the project's own canonical commands (an npm
+script, a make target, an xcodebuild scheme) rather than duplicating their
+flags — a shim that delegates can't drift when the project changes how it
+builds. If the repo has no canonical command for a check, that's worth
+telling the user before inventing one here.
+
 ## Step 3 - the formatter
 
 Write an executable `.claude/format.sh` for the detected stack. The plugin's
 PostToolUse hook delegates to it after every write, passing the changed
 file's path as `$1` — format just that file when the stack's tooling allows
-it, falling back to repo-wide only if it doesn't. Formatting rules never
-belong in CLAUDE.md; this script is the enforcement mechanism.
+it, falling back to repo-wide only if it doesn't. Same shim rule: invoke the
+project's configured formatter, never restate its style flags. Formatting
+rules never belong in CLAUDE.md; this script is the enforcement mechanism.
 
 ## Step 4 - labels
 
