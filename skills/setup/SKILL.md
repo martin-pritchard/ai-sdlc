@@ -77,4 +77,4 @@ nothing to check yet (no tests, no build), say so **loudly** — a vacuously
 green check is advisory verification wearing a costume.
 
 Finish with a table: file/label → created, updated, or already present. Then
-point at the path: capture an idea, `/triage`, `/build`.
+point at the path: `/idea`, `/triage`, `/build`.

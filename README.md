@@ -12,8 +12,65 @@ breaks if you get it wrong.
 /setup                  # in your repo: verify + format scripts, labels, issue template
 ```
 
-Then: capture an idea as a one-line issue → `/triage` → (`/shape n` on the
-thinking lanes) → `/build n` → review the PR. That's the whole loop.
+Then: `/idea one sentence` → `/triage` → (`/spec n` on the thinking lanes)
+→ `/build n` → review the PR. That's the whole loop.
+
+The names, in plain English: **idea** captures a one-liner into the backlog,
+**triage** sorts the backlog by blast radius, **spec** turns an issue into
+something an agent can build unattended, and **build** takes it from issue
+to ready PR.
+
+## What it looks like in practice
+
+Say you're building an invoicing app. Ideas arrive as one-liners the moment
+you have them — 30 seconds each, no thinking yet:
+
+```
+/idea Settings screen typo: 'Curency'
+/idea Export invoices as CSV
+/idea Support multiple currencies on invoices
+```
+
+Each becomes a title-only issue labelled `backlog`. (Away from a terminal,
+the repo's "Idea" issue template — created by `/setup` — does the same
+thing from the GitHub UI.)
+
+**`/triage`** — one session, the whole backlog at once. Claude proposes a
+table; nothing happens until you confirm it:
+
+| # | Title | Lane | Why |
+|---|---|---|---|
+| 12 | Settings screen typo | `just-ship` | worst outcome: a screen looks wrong |
+| 13 | Export invoices as CSV | `think-a-little` | new seam: export touches the invoice data contract |
+| 14 | Multiple currencies | `think-hard` | money, stored amounts — wrong is expensive to undo |
+
+You say "yes". Labels land, acceptance criteria are appended, and #12 is
+buildable *right now* — a `just-ship` issue never gets a spec.
+
+**`/build 12`** — fresh session, then hands-off: branch → draft PR → fix →
+the Stop hook won't let it claim done until `.claude/verify.sh` is green →
+a fresh-context review → PR flips to ready. Your only involvement is the
+merge button.
+
+**`/spec 13`** — Claude surveys the code and writes a one-page spec into
+the issue body: files touched, the data shape at the seam, edge cases,
+what's out of scope. You skim it whenever, then `/build 13`.
+
+**`/spec 14`** — the interview lane. One question at a time, each with a
+recommendation:
+
+> Existing invoices have no currency field. Backfill them as GBP, or treat
+> a missing currency as GBP at display time? **Recommended: backfill** — a
+> one-off migration now beats a null-check forever.
+
+Ten minutes of that, then the spec and plan land in the issue body. You
+approve — the one human gate before the PR — and `/build 14` runs against
+the plan.
+
+Your total involvement across all three: one triage table, one interview,
+three PR reviews. Everything between those moments is agent-owned.
+
+## Docs
 
 The process is one page: [`SDLC.md`](SDLC.md). The GitHub wiring
 (labels-first, board optional) is [`GITHUB.md`](GITHUB.md). Architecture
@@ -27,8 +84,9 @@ without installing: `claude --plugin-dir .`
 |---|---|---|
 | `build-rules` | skill | by Claude, whenever implementing |
 | `/setup` | skill | by you, once per repo |
+| `/idea <sentence>` | skill | by you, the moment an idea strikes |
 | `/triage` | skill | by you, batched (runs on Haiku) |
-| `/shape <n>` | skill | by you, thinking lanes only |
+| `/spec <n>` | skill | by you, thinking lanes only |
 | `/build <n>` | skill | by you — runs unattended to a ready PR |
 | `/audit` | skill | by you, occasionally |
 | `scoped-reviewer` | agent | spawned by `/build` (pinned to Opus) |

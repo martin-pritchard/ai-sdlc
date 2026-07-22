@@ -11,8 +11,9 @@ One page. If it grows past one page, it's wrong.
 **Triage before you flesh out.**
 
 The most common waste is writing a spec for something that needed a
-15-minute change. An idea enters as a one-line issue. It gets triaged.
-*Then* it gets shaped — if its lane calls for it.
+15-minute change. An idea enters as a one-line issue (`/idea`, or the Idea
+template). It gets triaged. *Then* it gets specced — if its lane calls
+for it.
 
 ## Triage
 
@@ -39,17 +40,17 @@ Three commands, two human moments. Everything between them is agent-owned.
 | Station | Just Ship | Think A Little | Think Hard |
 |---|:-:|:-:|:-:|
 | **`/triage`** — lane + acceptance criteria, batched | ● | ● | ● |
-| **`/shape`** — make it implementable | – | ● spec, you skim | ● interview → spec → plan, **you approve** |
+| **`/spec`** — make it implementable | – | ● spec, you skim | ● interview → spec → plan, **you approve** |
 | **`/build`** — implement, verify, review, PR | ● | ● | ● |
 | **PR review** — the second human moment | ● | ● | ● |
 
-- **Shape, user-facing** → Claude Design. The handoff bundle *is* the spec —
+- **Spec, user-facing** → Claude Design. The handoff bundle *is* the spec —
   don't duplicate it in prose: issue prose describes states and behaviour,
   only the design describes layout. Name components as you want them in
   code; ask for empty, loading, error and populated states before exporting.
   Needing a design turn is orthogonal to lane (`needs-design`) — even a Just
   Ship ticket waits for its bundle before build.
-- **Shape, Think Hard** → the agent interviews you first, one question at a
+- **Spec, Think Hard** → the agent interviews you first, one question at a
   time with its recommended answer, until you hold the same model. The spec
   is the residue of that alignment, not a substitute for it.
 - **Decompose (Think Hard only):** split into units that can each be built,
@@ -81,7 +82,7 @@ output is *mechanically checkable* — the verification loop catches a cheap
 model's mistakes; nothing catches a bad plan except you, later.
 
 Only two of these are pinned by the plugin (triage in its skill, review in
-its agent). Shapes and builds run on whatever the session runs — the middle
+its agent). Specs and builds run on whatever the session runs — the middle
 column is the recommendation, chosen per session by you.
 
 | Job | Model |

@@ -25,14 +25,14 @@ Run `/setup` once per repo (or `scripts/setup-labels.sh` for labels alone).
 |---|---|---|
 | `backlog` | Captured, untriaged | issue template (`/setup` creates it) |
 | `lane:just-ship` · `lane:think-a-little` · `lane:think-hard` | Triage verdict | `/triage` |
-| `needs-shaping` | Not implementable yet | `/triage` (on the two thinking lanes) |
+| `needs-spec` | Not implementable yet | `/triage` (on the two thinking lanes) |
 | `needs-design` | New/changed layout awaiting a Claude Design turn | `/triage` (any lane); removed when the bundle link lands |
 
 Everything else is derived, so it can't drift:
 
 | State | Derived from |
 |---|---|
-| Ready for development | lane label present, no `needs-shaping`, no `needs-design`, no PR |
+| Ready for development | lane label present, no `needs-spec`, no `needs-design`, no PR |
 | In development | draft PR with `Closes #n` |
 | In review | that PR marked ready |
 | Done | PR merged (closes the issue) |
@@ -40,16 +40,16 @@ Everything else is derived, so it can't drift:
 ## Lifecycle
 
 ```
-idea → issue (backlog)
-     → /triage        removes backlog, adds lane (+ needs-shaping, + needs-design), appends AC
-     → /shape n       (thinking lanes only) spec onto the issue, removes needs-shaping
+idea → /idea (or the Idea template) → issue (backlog)
+     → /triage        removes backlog, adds lane (+ needs-spec, + needs-design), appends AC
+     → /spec n        (thinking lanes only) spec onto the issue, removes needs-spec
      → design turn    (layout work, any lane) you, in Claude Design; bundle link onto the
                       issue removes needs-design — the bundle IS the layout spec
      → /build n       draft PR "Closes #n" → implement → verify → scoped review → PR ready
      → you review the PR → merge → issue closes
 ```
 
-Your manual moments: the triage table, the Think Hard shape approval, the PR.
+Your manual moments: the triage table, the Think Hard spec approval, the PR.
 `Just Ship` work never touches you between triage and the PR.
 
 ## Speed concessions
@@ -64,7 +64,7 @@ Your manual moments: the triage table, the Think Hard shape approval, the PR.
   sessions, never an unfiltered `gh issue list`.
 - `gh issue view 42 --json title,body` — tens of tokens. That's the budget.
 - Everything the build session needs lives in the issue body. If the agent
-  has to go looking, shaping under-specified it.
+  has to go looking, the spec was too thin.
 - Board/backlog operations and code operations are different sessions.
 
 ## The optional board
@@ -79,7 +79,7 @@ labels keep working.
 
 Check in order — it's almost always the first one.
 
-1. Items sitting in `needs-shaping` → you're shaping things that should be `Just Ship`.
+1. Items sitting in `needs-spec` → you're writing specs for things that should be `Just Ship`.
 2. Sessions are expensive → the agent is querying GitHub mid-build.
 3. Triage takes real time → you're triaging one at a time instead of batching.
 4. PRs queue on you → too many tickets in flight; cap it, or the tickets are too small.
