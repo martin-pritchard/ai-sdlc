@@ -155,6 +155,22 @@ Root is for files with a fixed home; `docs/` is for everything else.
 
 ---
 
+## Commit convention
+
+Commit per coherent step. Use **Conventional Commits**: `type(scope): summary`.
+
+- Types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `build`, `ci`,
+  `perf`, `style`, `revert`. Scope is optional but preferred — the area of
+  the repo the change touches.
+- Summary: imperative mood, lowercase, no trailing period, ≤72 chars.
+- Breaking changes: `!` before the colon (`feat(api)!: drop v1 endpoints`),
+  explained in the body.
+- Body is optional; use it for *why*, not *what*.
+- If the repo's existing `git log` clearly follows a different convention,
+  match the repo — don't impose this one over an established one.
+
+---
+
 ## Using this file
 
 - `/setup` copies it into each repo; the repo's copy is the live one — adapt
