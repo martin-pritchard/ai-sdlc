@@ -155,6 +155,27 @@ Root is for files with a fixed home; `docs/` is for everything else.
 
 ---
 
+## How is a markdown file named?
+
+One rule, two casings — decided by whether the name is a fixed convention or
+a description:
+
+- **`UPPERCASE.md`** (`SCREAMING_SNAKE_CASE.md` when multi-word) for the
+  repo's canonical, titular documents — the ones tooling or community
+  convention recognises by an exact upper-case name, plus top-level manifests
+  named after their whole subject: `README.md`, `LICENSE`, `SECURITY.md`,
+  `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `CLAUDE.md`, `PRINCIPLES.md`. One
+  per topic, unmistakable at a glance.
+- **`kebab-case.md`** for everything else — guides, references, notes, and any
+  doc named after a specific entity rather than a subject:
+  `getting-started.md`, `blind-test-writer.md`. Lower-case, words joined by
+  hyphens, never spaces or underscores.
+
+When in doubt it's `kebab-case`: the upper-case set is a short, closed list of
+convention-fixed names, not a style to reach for.
+
+---
+
 ## Commit convention
 
 Commit per coherent step. Use **Conventional Commits**: `type(scope): summary`.
