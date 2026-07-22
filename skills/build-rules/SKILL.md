@@ -44,7 +44,7 @@ contained change.
 
 ## Placement
 
-Where a new file or type goes is decided by the project's `PRINCIPLES.md`
+Where a new file or type goes is decided by the project's `docs/PRINCIPLES.md`
 (and its stack appendix) when one exists — feature folders, colocation,
 UI-free core, composition root. Never invent a location. If the principles
 are silent on the case at hand, that is a deferred decision for

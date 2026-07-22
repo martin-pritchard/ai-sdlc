@@ -55,7 +55,7 @@ not a substitute for one.
    unit becomes its own issue with its own lane (a follow-up "wire it up"
    unit is usually `lane:think-a-little`, not Think Hard).
 4. **Plan.** Files to touch and why — placement justified by the project's
-   `PRINCIPLES.md`, not invented — test seams with their Given/When/Then,
+   `docs/PRINCIPLES.md`, not invented — test seams with their Given/When/Then,
    risks, decision points. Append the plan to the issue body, below the
    spec — `/build` reads only the body, so a plan left in a comment is a
    plan the build never sees.

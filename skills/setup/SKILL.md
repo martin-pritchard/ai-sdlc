@@ -70,9 +70,11 @@ labels: backlog
 
 Copy `${CLAUDE_PLUGIN_ROOT}/templates/pre-commit` to `.githooks/pre-commit`
 (executable), and `${CLAUDE_PLUGIN_ROOT}/templates/SECURITY.md` to
-`SECURITY.md` — skip the doc if the repo already has one (root or `docs/`);
-the repo's copy is live and gets adapted, with stack-specific guards
-appended to the hook *below* the gitleaks section.
+`docs/SECURITY.md` — skip the doc if the repo already has one (root,
+`docs/`, or `.github/`); the repo's copy is live and gets adapted, with
+stack-specific guards appended to the hook *below* the gitleaks section.
+(`docs/` keeps the root clean and GitHub still surfaces the security policy
+from there — see the doc-placement rule in Step 7.)
 
 Then resolve `git config core.hooksPath` — never clobber another tool's
 hooks:
@@ -90,14 +92,23 @@ hook exists to catch the opaque keys it misses.
 
 ## Step 7 - architecture principles
 
-Copy `${CLAUDE_PLUGIN_ROOT}/templates/PRINCIPLES.md` to the repo root if the repo has
-no `PRINCIPLES.md`. The repo's copy is the live one — the user adapts it and
-adds stack appendices (`PRINCIPLES.ios.md`, `PRINCIPLES.web.md`) as the
-project grows. Add a line to the repo's `CLAUDE.md` (create a minimal one if
-absent): `Placement rules live in PRINCIPLES.md — read it before creating or
+Copy `${CLAUDE_PLUGIN_ROOT}/templates/PRINCIPLES.md` to `docs/PRINCIPLES.md`
+if the repo has no `PRINCIPLES.md` (check root and `docs/`). The repo's copy
+is the live one — the user adapts it and adds stack appendices
+(`docs/PRINCIPLES.ios.md`, `docs/PRINCIPLES.web.md`) as the project grows.
+Add a line to the repo's `CLAUDE.md` (create a minimal one if absent):
+`Placement rules live in docs/PRINCIPLES.md — read it before creating or
 moving files.` A plain mention, not an `@` import: build sessions read it
 when placing files; question-answering sessions shouldn't pay ~2k tokens of
 architecture rules on every turn.
+
+**Doc placement.** Every markdown doc `/setup` writes goes in `docs/`, not
+the root. The root holds only files whose location is fixed by external
+tooling or hard convention: `README.md`, `LICENSE`, and `CLAUDE.md` (Claude
+Code only auto-loads it from the root). Everything else — principles,
+security policy, guides, references — lives under `docs/`. Apply the same
+rule to any new doc a build session creates: when in doubt, it goes in
+`docs/`. The full statement lives in `docs/PRINCIPLES.md`.
 
 ## Step 8 - prove the loop
 
