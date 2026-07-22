@@ -173,8 +173,12 @@ Commit per coherent step. Use **Conventional Commits**: `type(scope): summary`.
 
 ## Using this file
 
-- `/setup` copies it into each repo; the repo's copy is the live one — adapt
-  it, and add stack appendices as the project grows.
+- This file is **plugin-managed**. `/setup` copies it into each repo, and
+  when the plugin's template changes the repo's `docs/PRINCIPLES.md` is
+  refreshed by overwriting it wholesale — so don't hand-edit it, your changes
+  would be lost on the next update. Put project-specific rules and any
+  adaptations in stack appendices (`docs/PRINCIPLES.ios.md`,
+  `docs/PRINCIPLES.web.md`) and `CLAUDE.md`, which are never overwritten.
 - Reference it from the repo's `CLAUDE.md` with a plain mention ("Placement
   rules live in docs/PRINCIPLES.md — read it before creating or moving files"),
   not an `@` import — build sessions load it on demand; other sessions

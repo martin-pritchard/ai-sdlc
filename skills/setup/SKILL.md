@@ -92,10 +92,14 @@ hook exists to catch the opaque keys it misses.
 
 ## Step 7 - architecture principles
 
-Copy `${CLAUDE_PLUGIN_ROOT}/templates/PRINCIPLES.md` to `docs/PRINCIPLES.md`
-if the repo has no `PRINCIPLES.md` (check root and `docs/`). The repo's copy
-is the live one — the user adapts it and adds stack appendices
-(`docs/PRINCIPLES.ios.md`, `docs/PRINCIPLES.web.md`) as the project grows.
+Copy `${CLAUDE_PLUGIN_ROOT}/templates/PRINCIPLES.md` to `docs/PRINCIPLES.md`.
+This file is **plugin-managed**: on first setup, copy it — but if the repo
+already has its own hand-written `PRINCIPLES.md` (check root and `docs/`),
+don't clobber it; say so and let the user reconcile. When the plugin's
+template later changes, refresh the repo's copy by **overwriting
+`docs/PRINCIPLES.md` wholesale** — it is not hand-edited. Project-specific
+rules and adaptations live in stack appendices (`docs/PRINCIPLES.ios.md`,
+`docs/PRINCIPLES.web.md`) and `CLAUDE.md`, which are never overwritten.
 Add a line to the repo's `CLAUDE.md` (create a minimal one if absent):
 `Placement rules live in docs/PRINCIPLES.md — read it before creating or
 moving files.` A plain mention, not an `@` import: build sessions read it
