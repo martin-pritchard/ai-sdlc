@@ -9,7 +9,7 @@ breaks if you get it wrong.
 ```
 /plugin marketplace add martin-pritchard/ai-sdlc
 /plugin install sdlc@ai-sdlc
-/setup                  # in your repo: verify + format scripts, labels, issue template
+/setup                  # in your repo: verify + format scripts, labels, issue template, secrets hook
 ```
 
 Then: `/idea one sentence` → `/triage` → (`/spec n` on the thinking lanes)

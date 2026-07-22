@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# Block secrets from being committed. See SECURITY.md.
+#
+# Installed by the sdlc plugin's /setup; enable per clone with:
+#   git config core.hooksPath .githooks
+#
+# This hook fails CLOSED: if gitleaks isn't installed, the commit is rejected
+# rather than passing unchecked. A security hook that silently no-ops when its
+# tool is missing is worse than no hook - it buys false confidence.
+#
+# Repo-specific guards (identity hygiene, generated-file checks) belong below
+# the gitleaks section; keep the secret scan first.
+
+set -euo pipefail
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  cat >&2 <<'MSG'
+
+  x gitleaks is not installed, so staged changes cannot be scanned for secrets.
+
+    Install it:  brew install gitleaks
+
+    Refusing to commit unscanned rather than assume it's fine.
+    To override for a single commit (you accept the risk):  git commit --no-verify
+
+MSG
+  exit 1
+fi
+
+# --redact keeps any detected secret out of terminal scrollback and logs.
+if ! gitleaks git --staged --redact --no-banner; then
+  cat >&2 <<'MSG'
+
+  x gitleaks found a possible secret in your STAGED changes. Commit blocked.
+
+    If it's real:      remove it, and rotate the credential if it ever existed
+                       anywhere real. Do not just unstage it and move on.
+    If it's a sample:  use an obviously fake placeholder value, or annotate the
+                       line with a trailing  gitleaks:allow  comment.
+
+    To override (you accept the risk):  git commit --no-verify
+
+MSG
+  exit 1
+fi

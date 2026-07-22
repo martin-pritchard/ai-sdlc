@@ -59,7 +59,29 @@ labels: backlog
 ---
 ```
 
-## Step 6 - architecture principles
+## Step 6 - secrets hygiene
+
+Copy `${CLAUDE_PLUGIN_ROOT}/templates/pre-commit` to `.githooks/pre-commit`
+(executable), and `${CLAUDE_PLUGIN_ROOT}/templates/SECURITY.md` to
+`SECURITY.md` — skip the doc if the repo already has one (root or `docs/`);
+the repo's copy is live and gets adapted, with stack-specific guards
+appended to the hook *below* the gitleaks section.
+
+Then resolve `git config core.hooksPath` — never clobber another tool's
+hooks:
+
+- unset → `git config core.hooksPath .githooks`
+- already `.githooks` → nothing to do
+- anything else (husky, lefthook, …) → leave it alone; add a gitleaks call
+  to the hooks that path already runs, and say what you did
+
+Finally `command -v gitleaks` — if missing, tell the user
+(`brew install gitleaks`); the hook fails closed until it's installed. If
+the repo has a GitHub remote, remind them to verify push protection is on
+(Settings → Code security): it only matches known vendor patterns, and the
+hook exists to catch the opaque keys it misses.
+
+## Step 7 - architecture principles
 
 Copy `${CLAUDE_PLUGIN_ROOT}/PRINCIPLES.md` to the repo root if the repo has
 no `PRINCIPLES.md`. The repo's copy is the live one — the user adapts it and
@@ -70,7 +92,7 @@ moving files.` A plain mention, not an `@` import: build sessions read it
 when placing files; question-answering sessions shouldn't pay ~2k tokens of
 architecture rules on every turn.
 
-## Step 7 - prove the loop
+## Step 8 - prove the loop
 
 Run `.claude/verify.sh` and show the output. If it passes because there is
 nothing to check yet (no tests, no build), say so **loudly** — a vacuously
