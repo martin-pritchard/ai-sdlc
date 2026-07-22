@@ -9,11 +9,15 @@ breaks if you get it wrong.
 ```
 /plugin marketplace add martin-pritchard/ai-sdlc
 /plugin install sdlc@ai-sdlc
-/setup                  # in your repo: verify + format scripts, labels, issue template, secrets hook
+/sdlc:setup             # in your repo: verify + format scripts, labels, issue template, secrets hook
 ```
 
-Then: `/idea one sentence` → `/triage` → (`/spec n` on the thinking lanes)
-→ `/build n` → review the PR. That's the whole loop.
+Then: `/sdlc:idea one sentence` → `/sdlc:triage` → (`/sdlc:spec n` on the
+thinking lanes) → `/sdlc:build n` → review the PR. That's the whole loop.
+
+Installed as a plugin, every command carries the `sdlc:` prefix — Claude
+Code namespaces all plugin skills, no opt-out. The rest of these docs use
+the short names (`/idea`, `/triage`) for readability.
 
 The names, in plain English: **idea** captures a one-liner into the backlog,
 **triage** sorts the backlog by blast radius, **spec** turns an issue into
