@@ -26,12 +26,13 @@ Run `/setup` once per repo (or `scripts/setup-labels.sh` for labels alone).
 | `backlog` | Captured, untriaged | issue template (`/setup` creates it) |
 | `lane:just-ship` · `lane:think-a-little` · `lane:think-hard` | Triage verdict | `/triage` |
 | `needs-shaping` | Not implementable yet | `/triage` (on the two thinking lanes) |
+| `needs-design` | New/changed layout awaiting a Claude Design turn | `/triage` (any lane); removed when the bundle link lands |
 
 Everything else is derived, so it can't drift:
 
 | State | Derived from |
 |---|---|
-| Ready for development | lane label present, no `needs-shaping`, no PR |
+| Ready for development | lane label present, no `needs-shaping`, no `needs-design`, no PR |
 | In development | draft PR with `Closes #n` |
 | In review | that PR marked ready |
 | Done | PR merged (closes the issue) |
@@ -40,8 +41,10 @@ Everything else is derived, so it can't drift:
 
 ```
 idea → issue (backlog)
-     → /triage        removes backlog, adds lane (+ needs-shaping), appends AC
+     → /triage        removes backlog, adds lane (+ needs-shaping, + needs-design), appends AC
      → /shape n       (thinking lanes only) spec onto the issue, removes needs-shaping
+     → design turn    (layout work, any lane) you, in Claude Design; bundle link onto the
+                      issue removes needs-design — the bundle IS the layout spec
      → /build n       draft PR "Closes #n" → implement → verify → scoped review → PR ready
      → you review the PR → merge → issue closes
 ```

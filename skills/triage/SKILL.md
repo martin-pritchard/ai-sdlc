@@ -47,6 +47,9 @@ Only after the user confirms or corrects the table. For each issue:
 - Remove `backlog`; add the lane label (`lane:just-ship`,
   `lane:think-a-little`, `lane:think-hard`)
 - `Think A Little` and `Think Hard` also get `needs-shaping`
+- New or changed layout also gets `needs-design` — **on any lane**. Lane
+  measures blast radius; needing a Claude Design turn is orthogonal to it.
+  The label comes off when the bundle link lands in the issue
 - Append acceptance criteria to the body: three bullets maximum, observable
   outcomes only
 - Close any issue the user agreed to close

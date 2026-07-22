@@ -44,8 +44,11 @@ Three commands, two human moments. Everything between them is agent-owned.
 | **PR review** — the second human moment | ● | ● | ● |
 
 - **Shape, user-facing** → Claude Design. The handoff bundle *is* the spec —
-  don't duplicate it in prose. Name components as you want them in code; ask
-  for empty, loading, error and populated states before exporting.
+  don't duplicate it in prose: issue prose describes states and behaviour,
+  only the design describes layout. Name components as you want them in
+  code; ask for empty, loading, error and populated states before exporting.
+  Needing a design turn is orthogonal to lane (`needs-design`) — even a Just
+  Ship ticket waits for its bundle before build.
 - **Shape, Think Hard** → the agent interviews you first, one question at a
   time with its recommended answer, until you hold the same model. The spec
   is the residue of that alignment, not a substitute for it.

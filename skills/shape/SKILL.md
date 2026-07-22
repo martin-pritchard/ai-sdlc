@@ -65,7 +65,9 @@ The Claude Design handoff bundle **is** the spec — link it in the issue and
 do not restate its layout in prose. Prose describes states and behaviour;
 only the design describes layout. If there is no bundle yet, shaping's output
 is a note of what to design: the screens, and the empty/loading/error/
-populated states each needs.
+populated states each needs. When the bundle link lands in the issue, remove
+`needs-design`. On the thinking lanes, do the behaviour spec here *before*
+the design turn, so the design is drawn against agreed behaviour.
 
 ## Constraints
 
