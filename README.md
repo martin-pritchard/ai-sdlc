@@ -1,4 +1,6 @@
-# sdlc
+# AI Software Development Life Cycle (SDLC)
+
+![SDLC Overview](./docs/sdlc-overview.png)
 
 A risk-triaged development process for agentic coding. Ideas in one end,
 verified PRs out the other, with the amount of ceremony matched to what
