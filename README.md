@@ -1,4 +1,4 @@
-# AI Software Development Life Cycle (SDLC)
+# AI Software Development Lifecycle (SDLC)
 
 ![SDLC Overview](./docs/sdlc-overview.png)
 
