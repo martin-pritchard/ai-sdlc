@@ -28,8 +28,11 @@ triage miss: say what's missing and suggest the lane it should have had.
 Write the spec yourself; the user skims it asynchronously.
 
 1. Survey first: grep for the components, types and utilities this touches.
-   For a wider surface, dispatch an Explore subagent rather than reading
-   files into this session.
+   Survey the committed baseline, not the working tree — if `git status`
+   shows unrelated changes (a parallel build in flight), read from a clean
+   ref (`git show <base>:<path>`) so the file plan isn't drawn against
+   another feature's half-finished WIP. For a wider surface, dispatch an
+   Explore subagent rather than reading files into this session.
 2. Write a spec **under one page** into the issue body, below the acceptance
    criteria: what changes, which files/components are involved, the data
    shapes at the seam, edge cases as observable outcomes, and what is
