@@ -19,7 +19,14 @@ file=$(printf '%s' "$input" \
   | sed -n 's/.*"file_path"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \
   | head -1)
 
-touch "${TMPDIR:-/tmp}/claude-sdlc-needs-verify-$(pwd | cksum | cut -d' ' -f1)"
+# Scope the sentinel to this session, not just the directory. A read-only
+# session (/idea, /spec) writes nothing and so never arms the gate, and a
+# parallel build's WIP can no longer ambush an unrelated session's Stop.
+sid=$(printf '%s' "$input" \
+  | sed -n 's/.*"session_id"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \
+  | head -1)
+
+touch "${TMPDIR:-/tmp}/claude-sdlc-needs-verify-${sid:-nosess}-$(pwd | cksum | cut -d' ' -f1)"
 
 if [ -x ".claude/format.sh" ]; then
   ./.claude/format.sh "$file" >/dev/null 2>&1 || true
