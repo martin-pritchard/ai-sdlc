@@ -138,8 +138,6 @@ work has exactly two: triage and the PR.
   explicit blocked hand-back, not a silent pass and not an infinite retry.
 - Edits to a `SKILL.md` take effect immediately. Changes to `hooks/` or
   `agents/` need `/reload-plugins` or a restart.
-- CI runs `claude plugin validate` on every push; run it locally after
-  manifest changes.
 - Keep every file here short — skills stay under ~2k tokens, and `/audit`
   exists to hold that line. A bloated process plugin is the thing this
   process exists to avoid.
